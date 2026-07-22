@@ -1,0 +1,1 @@
+# Progetto Warehouse Vestas
