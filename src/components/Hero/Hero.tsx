@@ -7,7 +7,7 @@ import * as notifySound from "../../firebase/notifySound";
 import vestasLogo from "../../assets/vestas-logo-white.png";
 
 const PILL_CLASS =
-    "flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1.5 text-xs font-semibold text-white/85 backdrop-blur-sm transition hover:bg-white/20";
+    "flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1.5 text-xs font-semibold text-white/85 backdrop-blur-sm transition hover:bg-white/20 cursor-pointer";
 const ICON_PILL_CLASS =
     "flex items-center justify-center rounded-full bg-white/10 p-2 text-white/85 backdrop-blur-sm transition hover:bg-white/20";
 

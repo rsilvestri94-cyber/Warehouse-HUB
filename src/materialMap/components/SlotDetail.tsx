@@ -1,5 +1,7 @@
+import { Printer } from "lucide-react";
 import type { Level } from "../parseLocation";
 import type { Slot } from "../buildWarehouse";
+import { buildMaterialListPdf } from "../materialListPdf";
 
 export function SlotDetail({
   rack,
@@ -12,11 +14,30 @@ export function SlotDetail({
   slot: Slot;
   highlightMaterial?: string;
 }) {
+  const titleParts = [`Scaffale ${Number(rack)}`, `Ripiano ${level}`];
+  if (slot.label) titleParts.push(slot.label);
+  const title = titleParts.join(" — ");
+
+  const handlePrint = () => {
+    const doc = buildMaterialListPdf(title, slot.items);
+    window.open(doc.output("bloburl").toString(), "_blank");
+  };
+
   return (
     <div className="rounded-2xl border border-grey-line bg-white p-4">
-      <div className="mb-2 font-heading text-xs font-bold uppercase tracking-wide text-blue-mid">
-        Scaffale {Number(rack)} — Ripiano {level}
-        {slot.label && ` — ${slot.label}`}
+      <div className="mb-2 flex items-center justify-between gap-2">
+        <div className="font-heading text-xs font-bold uppercase tracking-wide text-blue-mid">{title}</div>
+        {slot.items.length > 0 && (
+          <button
+            type="button"
+            onClick={handlePrint}
+            title="Stampa lista materiali"
+            className="flex shrink-0 items-center gap-1.5 rounded-full bg-blue-dark px-3 py-1.5 text-xs font-bold text-white hover:bg-blue-mid"
+          >
+            <Printer size={13} />
+            Stampa
+          </button>
+        )}
       </div>
       {slot.items.length === 0 ? (
         <p className="text-sm text-ink/40">Nessun materiale in questa posizione.</p>
