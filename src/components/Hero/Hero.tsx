@@ -143,8 +143,8 @@ export function Hero({
                 alt=""
             /> */}
 
-            <div className="relative z-10 flex flex-wrap items-center gap-5 py-6">
-                <div className="rounded-lg bg-blue-dark/60 p-3">
+            <div className="relative z-10 flex flex-col lg:flex-row-reverse lg:justify-between lg:items-center gap-5 py-6">
+                <div className="rounded-lg py-3">
                     <img
                         src={vestasLogo}
                         alt="Vestas"
