@@ -18,4 +18,4 @@ pnpm build
 pnpm preview
 ```
 
-L'output va nella cartella `dist/`, pronta per essere pubblicata su qualsiasi hosting statico (es. Firebase Hosting, GitHub Pages, Netlify).
+L'output va nella cartella `dist/`, pronta per essere pubblicata su qualsiasi hosting statico (es. Firebase Hosting, GitHub Pages, Netlify)
