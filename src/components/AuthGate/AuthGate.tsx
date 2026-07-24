@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+import { Map } from "lucide-react";
 import { useI18n } from "../../i18n/I18nContext";
 import type { useAuthGate } from "../../firebase/useAuthGate";
 import {
@@ -136,6 +138,16 @@ export function AuthGate({ gate }: { gate: Gate }) {
             <CheckShieldIcon className="h-3.5 w-3.5" />
             admin
           </div>
+        )}
+
+        {gate.state !== "loading" && (
+          <Link
+            to="/mappa"
+            className="mt-6 flex items-center justify-center gap-1.5 text-xs font-semibold text-blue-mid underline underline-offset-2 hover:text-blue-dark"
+          >
+            <Map className="h-3.5 w-3.5" />
+            Mappa Materiali (senza login)
+          </Link>
         )}
       </div>
     </div>
