@@ -1,6 +1,5 @@
 import { jsPDF } from "jspdf";
 import type { WorkOrderRow } from "./workOrders";
-import { hyphenateTurbine } from "./workOrders";
 
 const PAGE_W = 210;
 const PAGE_H = 297;
@@ -45,6 +44,19 @@ export function loadLogoAsPng(url: string): Promise<LoadedLogo> {
     });
 }
 
+// Largest bold font where `text` still fits in one line within `maxWidth`
+// (mm), also capped so it doesn't blow past `maxHeight` (mm, single line).
+function pickWidthFitFontSize(doc: jsPDF, text: string, maxWidth: number, maxHeight: number): number {
+    const maxByHeight = maxHeight / (0.3528 * 1.15);
+    for (let fontSize = 60; fontSize >= 10; fontSize--) {
+        if (fontSize > maxByHeight) continue;
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(fontSize);
+        if (doc.getTextWidth(text) <= maxWidth) return fontSize;
+    }
+    return 10;
+}
+
 function drawCard(
     doc: jsPDF,
     originY: number,
@@ -82,14 +94,13 @@ function drawCard(
     const endY = originY + HALF_H - 18; // leave room for the accent bar below
     const baseRowGap = 9;
 
-    const turbineLines = hyphenateTurbine(row.turbine).split("\n");
     // Base sizes (fontSize pt, lineHeight mm) tuned at "1×" — scaled up below
     // so the four rows always fill the whole card instead of leaving the
     // bottom half blank.
     const rowSpecs = [
         {
             label: "TURBINE",
-            lines: turbineLines,
+            lines: [row.turbine],
             baseFontSize: 32,
             baseLineHeight: 12,
         },
@@ -163,15 +174,14 @@ function drawCard(
         cursorY = contentBottom + rowGap;
     };
 
-    for (const spec of rowSpecs) {
-        field(
-            spec.label,
-            spec.lines,
-            spec.baseFontSize * scale,
-            BLACK,
-            spec.baseLineHeight * scale,
-        );
-    }
+    rowSpecs.forEach((spec, i) => {
+        const heightBudget = spec.baseLineHeight * scale * 1.1;
+        const fontSize =
+            i === 0
+                ? pickWidthFitFontSize(doc, row.turbine, contentW - 2, heightBudget)
+                : spec.baseFontSize * scale;
+        field(spec.label, spec.lines, fontSize, BLACK, spec.baseLineHeight * scale);
+    });
 
     // Accent bar, bottom-right of the card
     doc.setFillColor(...ACCENT);

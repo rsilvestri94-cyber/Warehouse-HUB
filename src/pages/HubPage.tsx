@@ -9,6 +9,7 @@ import { Footer } from "../components/Footer";
 import { ToolsGrid } from "../components/Tools/ToolsGrid";
 import { TodoPanel } from "../components/Sidebar/TodoPanel";
 import { CommentsPanel } from "../components/Sidebar/CommentsPanel";
+import { DriveLinkCard } from "../components/Sidebar/DriveLinkCard";
 import { ArchiveSection } from "../components/Archive/ArchiveSection";
 import { PrintToolSection } from "../components/PrintTool/PrintToolSection";
 import { defaultCta } from "../data/tools";
@@ -85,6 +86,7 @@ export function HubPage() {
                     onDelete={hub.deleteComment}
                     onSeen={() => hub.clearUnseen("comments")}
                   />
+                  <DriveLinkCard />
                 </aside>
                 <ToolsGrid tools={hub.tools} onReorder={hub.reorderTools} onAddTool={handleAddTool} onEditTool={handleEditTool} />
               </div>
