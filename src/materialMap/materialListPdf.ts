@@ -45,7 +45,7 @@ function pickMaterialFontSize(doc: jsPDF, items: MaterialRow[], colW: number, ro
     if (fontSize > maxByHeight) continue;
     doc.setFont("helvetica", "bold");
     doc.setFontSize(fontSize);
-    const fits = items.every(item => doc.getTextWidth(String(item.Material)) <= innerW);
+    const fits = items.every(item => doc.getTextWidth(item.Material) <= innerW);
     if (fits) return fontSize;
   }
   return 10;
@@ -82,7 +82,7 @@ export function buildMaterialListPdf(title: string, items: MaterialRow[]): jsPDF
     autoTable(doc, {
       startY: MARGIN + TITLE_H,
       head: [["Material", "Descrizione"]],
-      body: pageItems.map(item => [String(item.Material), item.Descrizione]),
+      body: pageItems.map(item => [item.Material, item.Descrizione]),
       margin: { left: MARGIN, right: MARGIN },
       tableWidth: tableW,
       styles: { fontSize, cellPadding: 2.5, valign: "middle", minCellHeight: rowH, font: "helvetica", fontStyle: "bold" },

@@ -28,7 +28,9 @@ export function fetchMaterialRows(): Promise<MaterialRow[]> {
       })
       .then(data => {
         if (!data.ok) throw new Error("La risposta del foglio non è valida (ok: false).");
-        return data.rows;
+        // The sheet API returns Material as a number when the cell looks numeric;
+        // normalize to string here so every consumer can rely on the declared type.
+        return data.rows.map(row => ({ ...row, Material: String(row.Material) }));
       })
       .catch(err => {
         cache = null; // allow retrying on next call
