@@ -9,10 +9,7 @@ export interface Strings {
   todoAddTitle: string;
   priorityLabel: string;
   printLabel: string;
-  printOldLabel: string;
-  printOldSub: string;
-  printNewsLabel: string;
-  printNewsSub: string;
+  printSub: string;
   archiveEmbedLabel: string;
   archiveEmbedHint: string;
   archiveEmbedNote: string;
@@ -37,6 +34,11 @@ export interface Strings {
   gearTitle: string;
   dragTitle: string;
   emptyTodos: string;
+  emptyActiveTodos: string;
+  emptyDoneTodos: string;
+  filterActive: string;
+  filterDone: string;
+  filterAll: string;
   deleteTaskTitle: string;
   markDoneTitle: string;
   markUndoTitle: string;
@@ -108,10 +110,7 @@ export const I18N: Record<Lang, Strings> = {
     todoAddTitle: "Aggiungi attività",
     priorityLabel: "Priorità",
     printLabel: "Stampa Work Order",
-    printOldLabel: "Stampa Work Order — Old",
-    printOldSub: "Archivio vecchio",
-    printNewsLabel: "Stampa Work Order — New",
-    printNewsSub: "Archivio DN track.2",
+    printSub: "Archivio DN track.2",
     archiveEmbedLabel: "Archivio DN — Tracking",
     archiveEmbedHint:
       "l'archivio si apre a schermo intero sopra l'hub — la pagina resta esattamente dov'era",
@@ -138,6 +137,11 @@ export const I18N: Record<Lang, Strings> = {
     gearTitle: "Modifica questo strumento",
     dragTitle: "Trascina per riordinare",
     emptyTodos: "Nessuna attività. Aggiungine una qui sopra.",
+    emptyActiveTodos: "Nessuna attività da fare.",
+    emptyDoneTodos: "Nessuna attività completata.",
+    filterActive: "Da fare",
+    filterDone: "Completate",
+    filterAll: "Tutte",
     deleteTaskTitle: "Elimina attività",
     markDoneTitle: "Segna come completata",
     markUndoTitle: "Segna come da fare",
@@ -213,10 +217,7 @@ export const I18N: Record<Lang, Strings> = {
     todoAddTitle: "Add task",
     priorityLabel: "Priority",
     printLabel: "Print Work Order",
-    printOldLabel: "Print Work Order — Old",
-    printOldSub: "Old archive",
-    printNewsLabel: "Print Work Order — New",
-    printNewsSub: "DN track.2 archive",
+    printSub: "DN track.2 archive",
     archiveEmbedLabel: "DN Archive — Tracking",
     archiveEmbedHint:
       "the archive opens full-screen over the hub — the page stays exactly where it was",
@@ -243,6 +244,11 @@ export const I18N: Record<Lang, Strings> = {
     gearTitle: "Edit this tool",
     dragTitle: "Drag to reorder",
     emptyTodos: "No tasks yet. Add one above.",
+    emptyActiveTodos: "No open tasks.",
+    emptyDoneTodos: "No completed tasks.",
+    filterActive: "To do",
+    filterDone: "Completed",
+    filterAll: "All",
     deleteTaskTitle: "Delete task",
     markDoneTitle: "Mark as done",
     markUndoTitle: "Mark as to-do",

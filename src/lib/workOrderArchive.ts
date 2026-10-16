@@ -59,12 +59,12 @@ export function fetchArchiveRows(force = false): Promise<ArchiveRow[]> {
 }
 
 // "stampato" empty means the DN hasn't been printed yet — these are the only
-// rows worth quick-adding to a new Work Order print.
+// rows worth quick-adding to a Work Order print.
 export function isPending(row: ArchiveRow): boolean {
     return row.stampato === "";
 }
 
-// Matches the raw tab-separated layout the "New / DN track.2" print tool
+// Matches the raw tab-separated layout the "DN track.2" print tool
 // expects when pasted by hand: mrp, date, dn, van, wtg, turbine, activity.
 export function toRawLine(row: ArchiveRow): string {
     return [

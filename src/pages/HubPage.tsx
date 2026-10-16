@@ -66,7 +66,10 @@ export function HubPage() {
                 <span className="text-xs text-ink/50">{t.toolsHint}</span>
               </div>
               <div className="grid grid-cols-1 gap-5 lg:grid-cols-[380px_1fr]">
-                <aside className="flex flex-col gap-4">
+                {/* On lg the sidebar must not set the row height: the tools grid does,
+                    and the todo list stretches to fill whatever is left. */}
+                <aside className="lg:relative lg:min-h-160">
+                  <div className="flex flex-col gap-4 lg:absolute lg:inset-0 lg:overflow-y-auto">
                   <TodoPanel
                     todos={hub.todos}
                     unseenIds={hub.unseenTodoIds}
@@ -87,6 +90,7 @@ export function HubPage() {
                     onSeen={() => hub.clearUnseen("comments")}
                   />
                   <DriveLinkCard />
+                  </div>
                 </aside>
                 <ToolsGrid tools={hub.tools} onReorder={hub.reorderTools} onAddTool={handleAddTool} onEditTool={handleEditTool} />
               </div>

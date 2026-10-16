@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useI18n } from "../../i18n/I18nContext";
-import { NEWS_COLUMNS, OLD_COLUMNS } from "../../lib/workOrders";
+import { WORK_ORDER_COLUMNS } from "../../lib/workOrders";
 import { PrintToolPanel } from "./PrintToolPanel";
 
 function Accordion({ label, sub, children }: { label: string; sub: string; children: React.ReactNode }) {
@@ -33,11 +33,8 @@ export function PrintToolSection() {
   const { t } = useI18n();
   return (
     <section className="flex flex-col gap-4">
-      <Accordion label={t.printOldLabel} sub={t.printOldSub}>
-        <PrintToolPanel columns={OLD_COLUMNS} />
-      </Accordion>
-      <Accordion label={t.printNewsLabel} sub={t.printNewsSub}>
-        <PrintToolPanel columns={NEWS_COLUMNS} showArchiveQuickAdd />
+      <Accordion label={t.printLabel} sub={t.printSub}>
+        <PrintToolPanel columns={WORK_ORDER_COLUMNS} />
       </Accordion>
     </section>
   );

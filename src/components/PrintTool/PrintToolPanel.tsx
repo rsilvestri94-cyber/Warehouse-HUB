@@ -6,13 +6,7 @@ import { buildWorkOrderPdf, loadLogoAsPng, vestasLogoUrl, type LoadedLogo } from
 import { markAsPrinted } from "../../lib/workOrderArchive";
 import { ArchiveQuickAdd } from "./ArchiveQuickAdd";
 
-export function PrintToolPanel({
-    columns,
-    showArchiveQuickAdd,
-}: {
-    columns: ColumnMap;
-    showArchiveQuickAdd?: boolean;
-}) {
+export function PrintToolPanel({ columns }: { columns: ColumnMap }) {
     const { lang } = useI18n();
     const t = I18N_PRINT[lang];
 
@@ -67,15 +61,13 @@ export function PrintToolPanel({
             <div className="mb-1 font-heading text-xs font-bold uppercase tracking-wide text-blue-mid">
                 {t.step1}
             </div>
-            {showArchiveQuickAdd && (
-                <ArchiveQuickAdd
-                    onAddLine={line =>
-                        setRaw(prev =>
-                            prev.trim() ? prev + "\n" + line : line,
-                        )
-                    }
-                />
-            )}
+            <ArchiveQuickAdd
+                onAddLine={line =>
+                    setRaw(prev =>
+                        prev.trim() ? prev + "\n" + line : line,
+                    )
+                }
+            />
             <textarea
                 value={raw}
                 onChange={e => setRaw(e.target.value)}

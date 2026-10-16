@@ -15,11 +15,8 @@ export interface ColumnMap {
   dn?: number;
 }
 
-// Old archive layout: Data(0) | ignored(1) | VAN(2) | Turbine(3) | Activity(4)
-export const OLD_COLUMNS: ColumnMap = { date: 0, van: 2, turbine: 3, activity: 4, minCols: 5 };
-
 // DN track.2 layout: mrp(0) | Data(1) | DN(2) | VAN(3) | ignored(4) | Turbine(5) | Activity(6)
-export const NEWS_COLUMNS: ColumnMap = { date: 1, van: 3, turbine: 5, activity: 6, minCols: 7, dn: 2 };
+export const WORK_ORDER_COLUMNS: ColumnMap = { date: 1, van: 3, turbine: 5, activity: 6, minCols: 7, dn: 2 };
 
 function todayDate(): string {
   return new Date().toLocaleDateString("it-IT", { day: "2-digit", month: "2-digit", year: "numeric" });
